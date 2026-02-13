@@ -1,23 +1,20 @@
-// rework by voxframeworks
+// rework by vox frameworks
 ModAPI.require("player");
 
-var flyingUp = false; // 1. Variable to remember if key is held
+var flying = false; // Starts off
 
-// 2. Detect Key Press and Release
-ModAPI.addEventListener("key", (event) => {
-  if (event.key === 35) { // 'H' key
-    if (event.action === 1) { // 1 = Key Down (Pressed)
-        flyingUp = true;
-    } else if (event.action === 0) { // 0 = Key Up (Released)
-        flyingUp = false;
+ModAPI.addEventListener("key", (e) => {
+    if (e.key == 35) { // If 'H' is pressed
+        flying = !flying; // Toggle true/false
+        
+        // Tell you in chat so you know if it's on or off
+        if(flying) ModAPI.displayToChat({msg: "Flight: ON"});
+        else ModAPI.displayToChat({msg: "Flight: OFF"});
     }
-  }
 });
 
-// 3. Apply movement every frame
 ModAPI.addEventListener("update", () => {
-    if (flyingUp) {
-        // Setting velocity to 0.5 overrides gravity
-        ModAPI.player.motionY = 0.5; 
+    if (flying) {
+        ModAPI.player.motionY = 0.8; // Fly up speed
     }
 });
