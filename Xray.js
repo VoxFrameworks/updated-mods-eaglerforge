@@ -24,10 +24,9 @@
                 // ModAPI.blocks[block].reload(); <--- REMOVED (Was crashing)
             } else if (ModAPI.blocks[block] && ("noRender" in ModAPI.blocks[block])) { //Otherwise, if it is a valid block, and can be set to not render, do so.
                 ModAPI.blocks[block].noRender = true;
-                // ModAPI.blocks[block].reload(); <--- REMOVED (Was crashing)
             }
         });
-        // ModAPI.reloadchunks() <--- REMOVED (Was causing the main crash)
+
         ModAPI.displayToChat({msg: "Note: You may need to reconnect or place blocks for chunks to refresh visually."})
     }
     function disable(){
@@ -35,9 +34,8 @@
                 allblocks.forEach(block=>{ //Loop through all the blocks
         if (ModAPI.blocks[block] && ("noRender" in ModAPI.blocks[block])) { 
             ModAPI.blocks[block].noRender = false;
-            // ModAPI.blocks[block].reload(); <--- REMOVED (Was crashing)
+
         }
         });
-        // ModAPI.reloadchunks() <--- REMOVED (Was causing the main crash)
     }
 })()
